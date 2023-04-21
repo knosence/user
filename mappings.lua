@@ -6,7 +6,9 @@
 return {
   -- first key is the mode
   i = {
-    ["kj"] = { "<Esc>", desc = "Escape to Normal Mode" }
+    ["kj"] = { "<Esc>", desc = "Escape to Normal Mode" },
+    -- Remaps ctl-z to redo
+    ["<C-z>"] = { "<C-r>", desc = "Redo" },
   },
   n = {
     -- second key is the lefthand side of the map
@@ -14,10 +16,9 @@ return {
     ["<leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
     ["<leader>bD"] = {
       function()
-        require("astronvim.utils.status").heirline.buffer_picker(function(bufnr)
-          require("astronvim.utils.buffer").close(
-            bufnr)
-        end)
+        require("astronvim.utils.status").heirline.buffer_picker(
+          function(bufnr) require("astronvim.utils.buffer").close(bufnr) end
+        )
       end,
       desc = "Pick to close",
     },
@@ -26,9 +27,13 @@ return {
     ["<leader>b"] = { name = "Buffers" },
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+    -- Remaps ctl-z to redo
+    ["<C-z>"] = { "<C-r>", desc = "Redo" },
   },
   t = {
     -- setting a mapping to false will disable it
     ["<esc>"] = false,
+    -- Remaps ctl-z to redo
+    ["<C-z>"] = { "<C-r>", desc = "Redo" },
   },
 }
